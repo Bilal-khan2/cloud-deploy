@@ -1,8 +1,12 @@
 import express from 'express';
 import path from 'path';
+import cors from 'cors';
+import { timeStamp } from 'console';
 console.log("server file here")
 const app = express()
 const port = process.env.PORT || 3000
+
+app.use(cors());
 
 app.get('/abc', (req, res) => {
 
@@ -19,7 +23,14 @@ res.send('Hello World!' + new Date().toString())
 app.get('/weather', (req, res) => {
 
   console.log("request ip", req.ip)
-res.send('Weather app Here')
+  
+  res.send({
+    temp:20,
+    humidaity:30,
+    expected:40,
+    serverTime:new Date().toString()
+  });
+
 
 })
 const __dirname = path.resolve();
