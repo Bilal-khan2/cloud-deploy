@@ -9,7 +9,7 @@ export const Weather = () => {
     // console.log(weather)
     const clickHandler =(e)=>{
         e.preventDefault();
-      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cname}&units=metric&appid=240f5cac962c8ae90fb76c7cf93f958e`)
+      axios.get(`http://localhost:3000/weather`)
       .then(response =>{
         console.log("response",response)
         Setweatherdata(response.data)
