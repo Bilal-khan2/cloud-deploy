@@ -3,13 +3,18 @@ import axios from "axios"
 import { Formik } from 'formik'
 import './style.css'
 
+let baseUrl = ``
+if(window.location.href.split(":")[0]==="http"){
+  let baseUrl = `http://localhost:3000` 
+}
+
 export const Weather = () => {
     const [weatherdata,Setweatherdata]=useState(null)
     const [cname,Setname]= useState("")
     // console.log(weather)
     const clickHandler =(e)=>{
         e.preventDefault();
-      axios.get(`http://localhost:3000/weather`)
+      axios.get(`${baseUrl}/weather/${cname}`)
       .then(response =>{
         console.log("response",response)
         Setweatherdata(response.data)
@@ -30,14 +35,17 @@ export const Weather = () => {
   <br />
   <div className="img"></div>
   {(weatherdata=== null)? null:
-  <div className="temp">Current Temp: {weatherdata?.main?.temp}°C 
+  <div className="temp">Current Temp: {weatherdata?.temp}°C 
   <br />
   Feels Like:  {weatherdata?.main?.feels_like}°C 
   <br />
   
-  MAX Temp:  {weatherdata?.main?.temp_max}°C 
+  MAX Temp:  {weatherdata?.max}°C 
   <br />
-  MIN Temp:  {weatherdata?.main?.temp_min}°C 
+  MIN Temp:  {weatherdata?.min}°C 
+
+  <br />
+  Humidaty:  {weatherdata?.humidaity}°C 
   </div>
   }
  </div>

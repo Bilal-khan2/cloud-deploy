@@ -26,8 +26,10 @@ app.get('/weather', (req, res) => {
   
   res.send({
     temp:20,
+    min:10,
+    max:21,
     humidaity:30,
-    expected:40,
+    expected:15,
     serverTime:new Date().toString()
   });
 
